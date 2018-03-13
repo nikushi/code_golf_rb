@@ -21,5 +21,6 @@ get '/' do
   strt = { x: 4, y: 0 };
   goal = { x: 5, y: 9 };
   ret = Router.route!(map, strt[:x], strt[:y], goal[:x], goal[:y])
-  erb :index, locals: { retval: ret.flatten }
+  wc = File.read('router.rb').length
+  erb :index, locals: { retval: ret.flatten, wc: wc }
 end
