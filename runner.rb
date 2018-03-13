@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-load './router.rb'
+require_relative 'router'
 require 'pp'
 
 map = [
