@@ -12,6 +12,10 @@ describe Router do
     let(:y2) { 9 }
 
     context 'map1' do
+      # 0---> x
+      # |
+      # |
+      # v y
       let(:map) {
         [
           [5,5,4,2,1,1,1,2,2,3],
@@ -28,6 +32,7 @@ describe Router do
       }
       let(:ans) {
         [
+          #x, y
           [4, 0],
           [4, 1],
           [4, 2],
