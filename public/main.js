@@ -21,35 +21,26 @@ $(function() {
 
 	//== コードを確認
 	function chckCode() {
-		// 初期化
-		var src = $("#src").val();
-
 		// 処理
-		var res = execCode(src, [mapSz, mapSz, map,
-			strt.x, strt.y, goal.x, goal.y]);
-
-		// 判定
-		var judg = "不正解";
-		if (res.toString() == ans.toString()) judg = "正解";
-		$("#stts").text(judg);
+		var res = JSON.parse($("#retval").text());
+    // 判定
+    var judg = "不正解";
+    if (res.toString() == ans.toString()) judg = "正解";
+    $("#stts").text(judg);
 
 		drwMap(res, map, mapSz);	// マップを表示
 
-		// 読みやすいように加工
-		var arr = [];
-		for (var i = 0; i < res.length; i += 2) {
-			arr.push("x " + res[i] + ", y " + res[i + 1]);
-		}
-
-		// 結果を出力
-		$("#res").val(arr.join("\n"));
+    // 読みやすいように加工
+    var arr = [];
+    for (var i = 0; i < res.length; i += 2) {
+      arr.push("x " + res[i] + ", y " + res[i + 1]);
+    }
+    // 結果を出力
+    $("#res").val(arr.join("\n"));
 	}
 
-	//== ボタンの処理を登録
-	$("#chck").click(chckCode);
-
 	//== 初回時実行
-	vwCode();	// 元の式を表示
+	//vwCode();	// 元の式を表示
 	chckCode();	// コードを確認
 });
 
