@@ -24,7 +24,17 @@ get '/' do
   ans = answers["#{start_x}_#{start_y}"]
   strt = { x: start_x, y: start_y };
   goal = { x: 5, y: 9 };
+
+  puts '#### debug ###'
+  puts "スタート: #{strt}"
+  puts "ゴール  : #{strt}"
+  puts "マップ"
+  pp map
+
   ret = Router.route!(map, strt[:x], strt[:y], goal[:x], goal[:y])
   wc = File.read('router.rb').length
+
+  puts "算出経路"
+  p ret
   erb :index, locals: { retval: ret.flatten, wc: wc, ans: ans}
 end

@@ -23,6 +23,12 @@ class Router
   def route!
     init_cost_map
     gen_cost_map
+
+    # debug
+    require 'pp'
+    puts '移動コスト:'
+    pp @cost_map
+
     resolve_route
   end
 
