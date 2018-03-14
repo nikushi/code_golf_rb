@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Router
+  attr_accessor :map, :x1, :y1, :x2, :y2, :cost_map
+
   # @param [Array<Array>] map input map data
   # @param [Integer] x1 スタート位置x座標
   # @param [Integer] y1 スタート位置y座標
@@ -14,7 +16,7 @@ class Router
     @y2 = y2
 
     # 合計コスト配列
-    @cost_map = []
+    @cost_map = Array.new
   end
 
   # @return [Array<Array>] 求められた最短経路のX,Y座標
@@ -29,7 +31,11 @@ class Router
   # 合計コスト配列の初期化
   def init_cost_map
     @map.each do |row|
-      @cost_map << row.map { |_v| Float::INFINITY }
+      tmp = Array.new
+      row.each do |_v|
+        tmp.push(Float::INFINITY)
+      end
+      @cost_map.push(tmp)
     end
   end
 
@@ -42,7 +48,7 @@ class Router
   # @param [Integer] y 現在の位置y
   # @param [Integer] cst 現在の合計コスト
   def _gen_cost_map(x, y, cst)
-    cst += @map[y][x]
+    cst = cst + @map[y][x]
     if cst >= @cost_map[y][x]
       return
     end
@@ -64,10 +70,10 @@ class Router
 
   # スタートからゴールへ移動
   def resolve_route
-    ans = []
-    ans << [@x1, @y1]
+    ans = Array.new
+    ans.push([@x1, @y1])
     move(ans, @x1, @y1)
-    ans << [@x2, @y2]
+    ans.push([@x2, @y2])
   end
 
   # x,yの隣接マスの内最もコストが小さいマスに移動
