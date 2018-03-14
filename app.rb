@@ -18,9 +18,13 @@ get '/' do
     [3,2,1,1,3,3,3,3,4,5],
   ]
 
-  strt = { x: 4, y: 0 };
+  answers = JSON.parse(File.read('answers.json'))
+  start_x = (0..9).to_a.sample # おみくじ
+  start_y = (0..9).to_a.sample # おみくじ
+  ans = answers["#{start_x}_#{start_y}"]
+  strt = { x: start_x, y: start_y };
   goal = { x: 5, y: 9 };
   ret = Router.route!(map, strt[:x], strt[:y], goal[:x], goal[:y])
   wc = File.read('router.rb').length
-  erb :index, locals: { retval: ret.flatten, wc: wc }
+  erb :index, locals: { retval: ret.flatten, wc: wc, ans: ans}
 end

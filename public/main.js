@@ -16,8 +16,7 @@ $(function() {
 	var goal = {x: 5, y: 9};
 
 	//== 答え
-	var ans = [4, 0, 4, 1, 4, 2, 3, 2, 3, 3, 3, 4, 2, 4, 2, 5,
-		1, 5, 1, 6, 1, 7, 1, 8, 2, 8, 2, 9, 3, 9, 4, 9, 5, 9];
+	var ans = JSON.parse($("#ans").text());
 
 	//== コードを確認
 	function chckCode() {
