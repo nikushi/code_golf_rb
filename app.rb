@@ -4,6 +4,8 @@ require 'json'
 require 'pp'
 require_relative 'router'
 
+also_reload './router.rb'
+
 get '/' do
   map = [
     [5,5,4,2,1,1,1,2,2,3],
