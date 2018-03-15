@@ -36,12 +36,7 @@ class Router
   def route!
     init_cost_map
     gen_cost_map
-
-    # debug
-    require 'pp'
-    puts '移動コスト:'
-    pp @cost_map
-
+    debug_print
     resolve_route
   end
 
@@ -85,6 +80,16 @@ class Router
     if y < @map.length - 1
       _gen_cost_map(x, y + 1, cst)
     end
+  end
+
+  def debug_print
+    require 'pp'
+    puts '合計コスト配列:'
+    puts '['
+    @cost_map.each do |row|
+      puts ' [' + row.map{ |v| sprintf("%2d", v) }.join(',') + ']'
+    end
+    puts ']'
   end
 
   # スタートからゴールへ移動
